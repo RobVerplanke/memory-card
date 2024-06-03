@@ -13,16 +13,21 @@ const characterNames = [
   'Pepper',
   'Peanut',
   'Bandit',
-  'Gizmo',
   'Snickers',
+  'Gizmo',
   'Sugar',
   'Shadow',
 ];
 
+function onClick(e) {
+  e.preventDefault();
+  console.log('clicked', e.target);
+}
+
 export default function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(characterNames);
 
   // Load all images when component is loaded for the first time only
   useEffect(() => {
@@ -42,7 +47,7 @@ export default function App() {
     <>
       <Header />
       <ScoreBoard current={currentScore} best={bestScore} />
-      <GameBoard images={images} />
+      <GameBoard images={images} onClick={onClick} />
     </>
   );
 }

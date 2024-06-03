@@ -1,9 +1,9 @@
 import '../styles/card.css';
 
-export default function Card({ image }) {
+export default function Card({ image, onClick }) {
   return (
-    <div className="card">
-      <img src={image} alt="Card image" />
-    </div>
+    <button className="card">
+      <img src={image} alt="Card image" onClick={onClick} />
+    </button>
   );
 }
