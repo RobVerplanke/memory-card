@@ -1,9 +1,9 @@
 import '../styles/card.css';
 
-export default function Card() {
+export default function Card({ image }) {
   return (
     <div className="card">
-      <h2>Card</h2>
+      <img src={image} alt="Card image" />
     </div>
   );
 }
