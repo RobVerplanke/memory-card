@@ -1,5 +1,6 @@
 import '../styles/scoreboard.css';
 
+// Display the current score and the highest score that is reached
 export default function ScoreBoard({ current, best }) {
   return (
     <div>

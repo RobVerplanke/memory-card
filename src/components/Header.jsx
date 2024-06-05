@@ -1,5 +1,6 @@
 import '../styles/header.css';
 
+// Create a title for the page with a subtitle
 export default function Header() {
   return (
     <div className="header">

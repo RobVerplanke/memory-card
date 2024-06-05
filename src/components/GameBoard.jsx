@@ -1,12 +1,12 @@
 import Card from './Card.jsx';
-
 import '../styles/gameboard.css';
 
-export default function Gameboard({ images, onClick }) {
+// Create a gameboard which displays a series cards with images on them
+export default function Gameboard({ imageUrls, onClick }) {
   return (
     <div className="gameboard">
-      {images.map((image, index) => (
-        <Card key={index} image={image} onClick={onClick} />
+      {imageUrls.map((url, index) => (
+        <Card key={index} index={index} url={url} onClick={onClick} />
       ))}
     </div>
   );

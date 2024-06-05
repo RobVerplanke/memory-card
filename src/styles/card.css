@@ -5,5 +5,11 @@
   padding: 10px;
   background-color: rgb(66, 66, 66);
 
+  cursor: pointer;
+  border: 0;
   outline: solid 1px rgba(255, 255, 255, 0.87);
+}
+
+.card {
+  z-index: 10;
 }
