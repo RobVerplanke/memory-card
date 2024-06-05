@@ -11,7 +11,7 @@ import '../styles/index.css';
 const characterNames = [
   'Felix',
   'Pepper',
-  'Peanut',
+  'Sophie',
   'Bandit',
   'Snickers',
   'Gizmo',
@@ -69,7 +69,11 @@ export default function App() {
     <>
       <Header />
       <ScoreBoard current={currentScore} best={bestScore} />
-      <GameBoard imageUrls={imageUrls} onClick={onClick} />
+      <GameBoard
+        imageUrls={imageUrls}
+        names={characterNames}
+        onClick={onClick}
+      />
     </>
   );
 }
