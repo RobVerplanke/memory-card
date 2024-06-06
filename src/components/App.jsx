@@ -2,30 +2,18 @@ import { useState, useEffect } from 'react';
 import Header from './Header';
 import ScoreBoard from './ScoreBoard';
 import GameBoard from './GameBoard';
-import getImageUrl from '../services/api.js';
-import handleError from '../utils.js';
+import getCharacters from '../characters.js';
 
 import '../styles/index.css';
 
-// Characters (from: dicebear.com/playground/?style=bottts) to play the game with
-const characterNames = [
-  'Felix',
-  'Pepper',
-  'Sophie',
-  'Bandit',
-  'Snickers',
-  'Gizmo',
-  'Sugar',
-  'Shadow',
-  'Cali',
-  'Sasha',
-];
+// Get all charactars that are used in this game
+// const characters = getCharacters(); // RETURNS URL AS PROMISE <<<<<<<<<<<<<<<<<<
 
 export default function App() {
   const [currentScore, setCurrentScore] = useState(0); // Keeps track of the current score
   const [bestScore, setBestScore] = useState(0); // Keeps track of the highest score so far
-  const [imageUrls, setImageUrls] = useState([]); // Store urls of character images
   const [clickedButtonIds, setClickedButtonIds] = useState([]); // Store clicked button IDs
+  const [characters, setCharacters] = useState([]);
 
   // Player clicked a button
   function onClick(e) {
@@ -44,20 +32,13 @@ export default function App() {
     setCurrentScore((prevCurrentScore) => prevCurrentScore + 1); // Update scoreboard
   }
 
-  // Initialize the game by loading the buttons and their images with a API request
   useEffect(() => {
-    async function initImages() {
-      try {
-        // Retreive the image url for each charactername.
-        const urlPromises = characterNames.map((name) => getImageUrl(name));
-        const imageUrls = await Promise.all(urlPromises);
-        setImageUrls(imageUrls); // Store corresponding urls
-      } catch (error) {
-        handleError(error);
-      }
+    async function fetchCharacters() {
+      const characters = await getCharacters();
+      setCharacters(characters);
     }
-    initImages();
-  }, []); // Load once on mount
+    fetchCharacters();
+  }, []);
 
   // Update 'Best score'-counter if 'Current score' is greater
   useEffect(() => {
@@ -69,11 +50,7 @@ export default function App() {
     <>
       <Header />
       <ScoreBoard current={currentScore} best={bestScore} />
-      <GameBoard
-        imageUrls={imageUrls}
-        names={characterNames}
-        onClick={onClick}
-      />
+      <GameBoard characters={characters} onClick={onClick} />
     </>
   );
 }
