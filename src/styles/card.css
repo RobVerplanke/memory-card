@@ -5,13 +5,16 @@
   padding: 10px;
   background-color: rgb(66, 66, 66);
 
+  box-shadow: 2px 2px 5px 2px black;
+
   cursor: pointer;
   border: 0;
-  outline: solid 1px rgba(255, 255, 255, 0.87);
+  outline: solid 2px rgba(255, 255, 255, 0.87);
+  transition: transform 30ms ease-in-out;
 }
 
-.card {
-  z-index: 10;
+.card:hover {
+  transform: scale(102%);
 }
 
 p {
